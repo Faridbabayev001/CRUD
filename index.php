@@ -15,6 +15,9 @@
       table{
          margin-top: 20px;
       }
+      tr td:first-child{
+         display: none;
+      }
    </style>
    <body>
       <div class="container">
@@ -23,7 +26,6 @@
             <table class="table table-bordered">
                <thead>
                   <tr>
-                     <th>Id</th>
                      <th>Name</th>
                      <th>Email Address</th>
                      <th>Mobile Number</th>
@@ -37,7 +39,7 @@
                            <td><?php echo $value ?></td>
                         <?php } ?>
                         <td>
-                           <a href="#" class="btn btn-default">Read</a>
+                           <a href="read.php?id=<?php echo $data["id"]?>" class="btn btn-default">Read</a>
                            <a href="update.php?id=<?php echo $data["id"]?>" class="btn btn-primary">Update</a>
                            <a href="delete.php?id=<?php echo $data["id"]?>" class="btn btn-danger">Delete</a>
                         </td>

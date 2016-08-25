@@ -1,9 +1,13 @@
 <?php
    include "check.php";
    $id = $_GET['id'];
-$sql = "SELECT name, email, mobile FROM crud WHERE id=$id";
+
+$sql="SELECT `name`, `email`, `mobil` FROM `grid` WHERE `id`=$id";
 $query= mysqli_query($base,$sql);
-$row = mysqli_fetch_assoc($query)
+if ($query) {
+   $row = mysqli_fetch_assoc($query);
+}
+
 
  ?>
 <!DOCTYPE html>
@@ -19,15 +23,16 @@ $row = mysqli_fetch_assoc($query)
       }
       .secondDiv{
          background: lightgray;
-         width: 100%;
          height: 50px;
+         padding: 10px;
       }
    </style>
    <body>
       <div class="container">
          <h1>Update a Customer</h1>
          <div class="col-md-6">
-            <form  action="index.php" method="post">
+            <form  action="update1.php" method="post">
+               <input  type="hidden" name="id" value="<?= $id ?>">
                <div class="col-md-6 text-right">
                   <label class="form-control-label">Name</label>
                </div>
@@ -38,16 +43,35 @@ $row = mysqli_fetch_assoc($query)
                   <label class="form-control-label">Email Address</label>
                </div>
                <div class="col-md-6">
-                  <input class="form-control" type="text" name="name" value="<?= $row['email'] ?>">
+                  <input class="form-control" type="text" name="email" value="<?= $row['email'] ?>">
                </div>
                <div class="col-md-6 text-right">
                   <label class="form-control-label">Mobile Number</label>
                </div>
                <div class="col-md-6">
-                  <input class="form-control" type="text" name="name" value="<?= $row['mobil']?>">
+                  <input class="form-control" type="text" name="mobil" value="<?= $row['mobil']?>">
                </div>
-            </form>
+
          </div>
       </div>
+      <div class="container secondDiv">
+         <div class="col-md-4 col-md-offset-3">
+            <input class="btn btn-success" type="submit" name="update" value="Update">
+            <a class="btn btn-default" href="index.php">Back</a>
+         </div>
+      </div>
+      </form>
    </body>
 </html>
+<?php
+   // if (isset($_POST["update"])) {
+   //    $ad = $_POST["name"];
+   //    $email = $_POST["email"];
+   //    $mobil = $_POST["mobil"];
+   //    $sql = "UPDATE grid SET name='$ad',email='$email',mobil='$mobil' WHERE id='$id'";
+   //    $query = mysqli_query($base,$sql);
+   //    if ($query) {
+   //       header("Location:index.php");
+   //    }
+   // }
+ ?>
